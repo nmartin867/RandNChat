@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title><%= title %></title>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
-    <link rel='stylesheet' href='/stylesheets/style.css'/>
-    <link rel='stylesheet' href='/stylesheets/header.css'/>
-</head>
-<%- include('partials/header') %>
+<%- include('partials/head-section') %>
 <body>
-<div class="content">
-    <% if (loggedIn) { %>
+<%- include('partials/header') %>
+<div class="content-container">
+    <% if (user) { %>
         <%- include('partials/chat') %>
     <% } else { %>
-       <%- include('partials/action-nav') %>
+        <%- include('partials/login') %>
     <% } %>
 </div>
-<script src="/js/action-nav.js"/>
+
 <script>
+    const ws = new WebSocket("wss://localhost:3000/chat");
+    ws.onopen = event => {
+      console.log('Socket Open');
+    };
+
+    ws.onmessage = event => {
+      console.log(event.data);
+    };
 
 </script>
 </body>

@@ -5,9 +5,6 @@ const LocalStrategy = require('passport-local').Strategy;
 const UserRepo = new require('../repository/UserRepository').newInstance('../chat.db');
 const _ = require('lodash');
 
-var loginResponse = {title: 'Who is this??', page: 'login'};
-var createResponse = {title: 'Who you gonna be?!', page: 'create'};
-
 passport.serializeUser(function (user, done) {
     done(null, user.id);
 });
@@ -26,25 +23,22 @@ passport.use(new LocalStrategy(
     }
 ));
 
-
-router.get('/login', (req, res) => {
-    res.render('user', {title: 'Who is this??', page: 'login'})
-});
-
 router.get('/create', (req, res) => {
-    res.render('user', {title: 'Who you gonna be?!', page: 'create'})
+   res.render('create', {
+       title: 'Create Account',
+       user: null
+   });
 });
-
 
 router.post('/create', (req, res) => {
     const {username, password} = req.body;
     UserRepo.createUser(username, password, (err, user) => {
         if (err) {
             req.flash('message', err.message)
-            res.render('user', {...createResponse, username, password, error: err});
+            res.redirect('/create');
         } else {
             req.flash('message', 'Saaweet! Now login!');
-            res.redirect('/login');
+            res.redirect('/');
         }
     });
 });
@@ -54,11 +48,11 @@ router.post('/login', (req, res, next) => {
         if (err) return next(err);
         if (!user) {
             req.flash('message', info.message || 'Invalid username or password.');
-            return res.redirect('/login');
+            res.redirect('/');
         }
         req.logIn(user, function(err) {
             if (err) return next(err);
-            return res.redirect('/');
+            res.redirect('/');
         });
     })(req, res, next);
 });

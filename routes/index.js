@@ -1,29 +1,19 @@
 const express = require('express');
 const router = express.Router();
-const _ = require('lodash');
 const ChatRepo = require('../repository/ChatRepository').newInstance('../chat.db');
 
 router.get('/', (req, res, next) => {
-  const { id, username } = req.user || {};
-  const chatState = {
-    title: 'Martin Chat',
-    loggedIn: req.user ? true : false,
-    user: {
-      id,
-      username
-    }
-  }
   if(req.user) {
     ChatRepo.getAll((err, messages) => {
       if(err) return next(err);
       const chatHistory = messages.map(m => ({
-        currentUserMessage: m.userId === req.user.id,
+        userMessage: req.user.id === m.userid,
         message: m
       }));
-      chatState.chatHistory = chatHistory;
+      return res.render('index', { chatHistory });
     });
   }
-  res.render('index', chatState);
+  res.render('index');
 });
 
 module.exports = router;
