@@ -93,21 +93,19 @@ body{
   .menu { padding-top:40px; }
 }
 
-
-/* -- Demo ads -- */
-
-@media (max-width: 1200px) {
-  #bsaHolder{ display:none;}
+.content .nav-container{
+  display: flex;
+  flex-direction: row;
 }
 
-/* -- Link to Tutorialzine -- */
-
-.tz-link{
-  text-decoration: none;
-  color: #fff !important;
-  font: bold 36px Arial,Helvetica,sans-serif !important;
+.content .nav-container button {
+  color: #bb86fc;
+  background-color: #2e2e2e;
+  padding: 10px;
+  font: 16px "Courier New", Courier, monospace;
 }
 
-.tz-link span{
-  color: #da431c;
+.content .nav-container button:hover {
+  color: #2e2e2e;
+  background-color: #BB86FC;
 }

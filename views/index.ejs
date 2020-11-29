@@ -1,16 +1,24 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title><%= title %></title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link rel='stylesheet' href='/stylesheets/header.css' />
-  </head>
-  <%- include('partials/header') %>
-  <body>
-    <div class="content">
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <link rel='stylesheet' href='/stylesheets/header.css'/>
+</head>
+<%- include('partials/header') %>
+<body>
+<div class="content">
+    <% if (loggedIn) { %>
+        <%- include('partials/chat') %>
+    <% } else { %>
+       <%- include('partials/action-nav') %>
+    <% } %>
+</div>
+<script src="/js/action-nav.js"/>
+<script>
 
-    </div>
-  </body>
+</script>
+</body>
 </html>
