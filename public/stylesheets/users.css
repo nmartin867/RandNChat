@@ -1,0 +1,57 @@
+body {
+    padding: 0px;
+    font: 16px "Courier New", Courier, monospace;
+    background-color: #212121;
+    color: #b074fa;
+  }
+  
+.content-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows:    repeat(4, 1fr);
+  gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+} 
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.heading{
+  grid-column-start: 2;
+  grid-row-start: 1;
+}
+
+form{
+  grid-column-start: 2;
+  grid-row-start: 2;
+}
+
+label {
+  margin-bottom: 10px;
+}
+
+input {
+  border:none;
+  padding:10px;
+  color: #BB86FC;
+  padding: 10px;
+  background-color: #212121;
+  border: 2px solid #BB86FC;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+button{
+  color: #bb86fc;
+  background-color: #2e2e2e;
+  border: 2px solid #BB86FC;
+  padding: 20px;
+  font: 16px "Courier New", Courier, monospace;
+}
+
+button:hover{
+  color: #2e2e2e;
+  background-color: #BB86FC;
+}
