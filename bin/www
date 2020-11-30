@@ -4,22 +4,46 @@
  * Module dependencies.
  */
 
-var app = require('../app');
-var debug = require('debug')('chat:server');
-var http = require('http');
+const app = require('../app');
+const debug = require('debug')('chat:server');
+const http = require('http');
+const WebSocket = require('ws');
 
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000');
+const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
 /**
  * Create HTTP server.
  */
 
-var server = http.createServer(app);
+const server = http.createServer(app);
+
+const wss = new WebSocket.Server({ server });
+
+
+wss.on('connection', function (ws) {
+  ws.on('message', data => {
+    try {
+      const {userid, username, message} = JSON.parse(data);
+      wss.clients.forEach(client => {
+        if(client !== ws && client.readyState === WebSocket.OPEN) {
+          client.send(JSON.stringify({
+            datetime: new Date(),
+            userid,
+            username,
+            message
+          }));
+        }
+      });
+    } catch (e) {
+      console.error('Error parsing message: ', e);
+    }
+  });
+});
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -82,8 +106,8 @@ function onError(error) {
  */
 
 function onListening() {
-  var addr = server.address();
-  var bind = typeof addr === 'string'
+  const addr = server.address();
+  const bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
   debug('Listening on ' + bind);

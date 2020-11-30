@@ -23,6 +23,18 @@ passport.use(new LocalStrategy(
     }
 ));
 
+router.get('/logout', (req, res) => {
+    req.logout();
+    res.redirect('/');
+});
+
+router.get('/session', (req, res) => {
+    res.json({
+        authenticated: req.user ? true : false,
+        user: req.user
+    });
+});
+
 router.get('/create', (req, res) => {
    res.render('create', {
        title: 'Create Account',

@@ -10,17 +10,6 @@
         <%- include('partials/login') %>
     <% } %>
 </div>
-
-<script>
-    const ws = new WebSocket("wss://localhost:3000/chat");
-    ws.onopen = event => {
-      console.log('Socket Open');
-    };
-
-    ws.onmessage = event => {
-      console.log(event.data);
-    };
-
-</script>
+<%- include('partials/scripts') %>
 </body>
 </html>

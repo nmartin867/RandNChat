@@ -1,6 +1,5 @@
 const createError = require('http-errors');
 const express = require('express');
-const expressWs = require('express-ws')(express());
 const path = require('path');
 const passport = require('passport');
 const logger = require('morgan');
@@ -9,9 +8,9 @@ const flash = require('connect-flash');
 const secret = process.env.SECRET || 'bingowashisnameo';
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-const chatRouter = require('./routes/chat')
+const bundleRouter = require('./routes/bundle');
 
-const app = expressWs.app;
+const app = express()
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -42,7 +41,7 @@ app.use(function(req, res, next){
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/chat', chatRouter);
+app.use('/bundle', bundleRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

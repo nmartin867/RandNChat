@@ -1,11 +1,11 @@
 <header class="header-basic">
 <div class="header-limiter">
     <h1>
-        Lover's<span>Chat</span>
+        Martin<span>Chat</span>
     </h1>
     <nav>
         <%if (user) { %>
-            <a><%=user.username%></a>
+            Hi <a href="/users/logout"><%=user.username%></a>
         <% }  %>
     </nav>
 </div>

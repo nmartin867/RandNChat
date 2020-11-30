@@ -1,11 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Mono:wght@500&display=swap');
 
-html{
-  background-color: #212121;
-}
-
 body{
   font-family: 'Fira Mono', monospace;
+  background-color: #212121;
   color: #dbdbdb;
   padding:0;
   margin:0;
@@ -13,15 +10,15 @@ body{
 
 .content-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 1fr 2fr 1fr;
-  gap: 10px;
-  grid-auto-rows: minmax(100px, auto);
+  grid-template-columns: 1fr 1.5fr 1fr;
+  grid-template-rows: auto 1fr auto;
+  gap: 20px;
+  height: calc(100vh - 20px);
 }
 
 .form-container {
   grid-column-start: 2;
-  grid-row-start: 1;
+  grid-row-start: 2;
   display: flex;
   flex-direction: column;
 }
@@ -33,6 +30,7 @@ body{
   box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.15);
   box-sizing: border-box;
   padding: 80px 40px;
+  max-height: 50%;
 }
 
 .form-container label {
@@ -65,6 +63,7 @@ body{
   color: #2e2e2e;
   background-color: #BB86FC;
 }
+
 .form-container .link-container{
  margin-top: 20px;
 }
