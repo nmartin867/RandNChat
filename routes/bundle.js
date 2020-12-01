@@ -12,6 +12,6 @@ router.get('/', (req, res, next) => {
         return next(err);
     });
     b.pipe(res);
-}); 
+});
 
 module.exports = router;

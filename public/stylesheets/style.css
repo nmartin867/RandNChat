@@ -10,8 +10,8 @@ body{
 
 .content-container {
   display: grid;
-  grid-template-columns: 1fr 1.5fr 1fr;
-  grid-template-rows: auto 1fr auto;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(12, 1fr);
   gap: 20px;
   height: calc(100vh - 20px);
 }
