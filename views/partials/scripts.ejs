@@ -1,22 +1,22 @@
-<!--<script>-->
-<!--    const mchat = (mchat => {-->
-<!--        const _this = mchat || {};-->
-<!--        _this.wsHost = `ws://${location.host}`;-->
-<!--        _this.session = {-->
-<!--        <%if(locals.user) {%>-->
-<!--        authenticated: true,-->
-<!--        user: {-->
-<!--            id: <%= locals.user.id%>,-->
-<!--            username: '<%= locals.user.username %>'-->
-<!--        }-->
-<!--        <%} else {%>-->
-<!--        authenticated: false,-->
-<!--        user: null-->
-<!--        <%}%>-->
-<!--        };-->
-<!--        return _this;-->
-<!--    })(window.mchat);-->
-<!--</script>-->
+<script>
+    const mchat = (mchat => {
+        const _this = mchat || {};
+        _this.wsHost = `ws://${location.host}`;
+        _this.session = {
+        <%if(locals.user) {%>
+        authenticated: true,
+        user: {
+            id: <%= locals.user.id%>,
+            username: '<%= locals.user.username %>'
+        }
+        <%} else {%>
+        authenticated: false,
+        user: null
+        <%}%>
+        };
+        return _this;
+    })(window.mchat);
+</script>
 <!--<script src="/javascripts/mchat.js"></script>-->
 
 <script src="/bundle"></script>

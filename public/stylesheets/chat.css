@@ -1,9 +1,6 @@
 .chat-container {
     grid-column: 1 / 12;
     grid-row: 1 / 12;
-    /*background-color: #2e2e2e;*/
-    /*box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.15);*/
-    /*box-sizing: border-box;*/
     overflow-y: hidden;
     font-family: 'Fira Mono', monospace;
     font-size: 14px;
@@ -18,12 +15,17 @@
 .chat-message {
     display: flex;
     flex-direction: row;
+    background-color: #2e2e2e;
+    box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.15);
+    box-sizing: border-box;
+    padding: 10px;
     margin-bottom: 10px;
 }
 
 .chat-message .message-auth-container {
     display: flex;
     flex-direction: row;
+    align-items: center;
 }
 
 .chat-message .message-auth-container .message-date {
@@ -31,7 +33,7 @@
 }
 
 .chat-message .message-text-container {
-
+    padding: 10px;
 }
 
 .chat-message .message-text-container .message-text {

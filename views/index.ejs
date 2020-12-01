@@ -4,12 +4,11 @@
 <body>
 <%- include('partials/header') %>
 <div class="content-container">
-    <%- include('partials/chat') %>
-<!--    <% if (user) { %>-->
-<!--        <%- include('partials/chat') %>-->
-<!--    <% } else { %>-->
-<!--        <%- include('partials/login') %>-->
-<!--    <% } %>-->
+    <% if (user) { %>
+        <%- include('partials/chat') %>
+    <% } else { %>
+        <%- include('partials/login') %>
+    <% } %>
 </div>
 <%- include('partials/scripts') %>
 </body>

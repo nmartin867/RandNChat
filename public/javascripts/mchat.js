@@ -32,7 +32,42 @@
 
     ws.onmessage = event => {
         console.info('WebSocket Message: ', event);
+        const message = JSON.parse(event.data);
+        const messageElement = createMessageElement(message);
+
+        chatWindow.appendChild(messageElement);
     };
+
+    function createMessageElement(message) {
+        const dateSpan = document.createElement('span');
+        dateSpan.classList.add('message-date');
+
+        const authorSpan = document.createElement('span');
+        authorSpan.classList.add('author-name');
+
+        const authorContainer = document.createElement('div');
+        authorContainer.classList.add('message-auth-container');
+
+        authorContainer.appendChild(dateSpan);
+        authorContainer.appendChild(authorSpan);
+
+        const messageSpan = document.createElement('span');
+        messageSpan.classList.add('message-text');
+
+        const messageContainer = document.createElement('div');
+        messageContainer.classList.add('message-text-container');
+
+        messageContainer.appendChild(messageSpan);
+
+
+        const container = document.createElement('div');
+        container.classList.add('chat-message');
+
+        container.appendChild(authorContainer);
+        container.appendChild(messageContainer);
+
+        return container;
+    }
 
     function sendMessage() {
         const {authenticated, user} = mchat.session;
